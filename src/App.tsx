@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import ToDoList from "./pages/ToDoList";
+import ChoThueXe from "./pages/ChoThueXe";
 
 const App = () => {
   return (
     <>
-      <ToDoList />
+      <ChoThueXe />
     </>
   );
 };
