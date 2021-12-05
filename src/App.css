@@ -54,7 +54,7 @@
   background-color: #ffffff;
   -webkit-box-shadow: 0 0 10px rgba(51, 51, 51, 0.1);
   box-shadow: 0 0 10px rgba(51, 51, 51, 0.1);
-  margin: 50px;
+  margin: 20px;
 }
 
 .add-form .edit {
@@ -76,30 +76,31 @@
 .form-control {
   height: 47px;
   width: 100%;
-  -webkit-box-shadow: unset !important;
-  box-shadow: unset !important;
   border: 1px solid;
   background-color: #f5f5f5;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
   border-radius: 5px;
-  padding: 1px 0 0 15px;
+  padding: 1px 0 0 5px;
   font-size: 16px;
   font-weight: 400;
 }
 
 .form-control-textarea {
   width: 100%;
-  -webkit-box-shadow: unset !important;
-  box-shadow: unset !important;
   border: 1px solid;
   background-color: #f5f5f5;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
   border-radius: 5px;
-  padding: 1px 0 0 15px;
+  padding: 8px 0 0 5px;
   font-size: 16px;
   font-weight: 400;
+}
+
+.due-date {
+  width: 200px;
+  margin-right: 10px;
+}
+.piority {
+  width: 150px;
+  height: 50px;
 }
 
 .default-btn {
@@ -109,7 +110,7 @@
   text-align: center;
   overflow: hidden;
   color: #ffffff;
-  background-color: #d30000;
+  background-color: #0bb828;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   width: 100%;
@@ -130,6 +131,11 @@
   margin: auto;
   justify-content: space-between;
 }
+.display-flex-container {
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
 
 .wrapper {
   width: 100%;
@@ -138,6 +144,7 @@
 
 .item-wrapper {
   margin-top: 30px;
+  padding: 0 0 0 5px;
 }
 
 .item-record {
@@ -154,7 +161,7 @@
 .item-title {
   font-weight: 600;
   color: #666;
-  padding: 1px 0 0 15px;
+  padding: 1px 0 0 10px;
   border: 1px solid;
   border-radius: 5px;
   display: flex;
@@ -169,36 +176,40 @@
 .item-content {
   padding: 1em 1.5em;
 }
-.item-title .btn {
+.btn {
   display: flex;
-  margin-right: 20px;
 }
-.item-title .btn button {
+.btn button {
   border: none;
   display: block;
   text-align: center;
   overflow: hidden;
   color: #ffffff;
-  width: 100%;
   border-radius: 5px;
   padding: 8px 30px;
   font-weight: 600;
   cursor: pointer;
 }
 
-.item-title .btn .detail {
+.btn .detail {
   background-color: #1ebee6;
   margin-right: 10px;
 }
-.item-title .btn .remove {
+.btn .remove {
   background-color: #e62b1e;
+  margin-right: 20px;
 }
-.item-title .btn .detail:hover {
-  background-color: #221638;
-  color: #ffffff;
-  cursor: pointer;
+
+.btn .done {
+  background-color: #1e3ce6;
+  margin: 10px 10px 0px 0px;
 }
-.item-title .btn .remove:hover {
+.btn .remove-select {
+  background-color: #e62b1e;
+  margin: 10px 10px 0px 0px;
+}
+
+.btn :hover {
   background-color: #221638;
   color: #ffffff;
   cursor: pointer;
@@ -208,4 +219,30 @@
   background-color: #221638;
   color: #ffffff;
   cursor: pointer;
+}
+
+.bulk-action {
+  margin-top: 30px;
+  height: 50px;
+  width: 100%;
+  border: 1px solid;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0 0 0 5px;
+  border: 1px solid;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+@media only screen and (max-width: 900px) {
+  .add-form {
+    width: 90%;
+  }
+  .display-flex-container {
+    display: inline;
+  }
 }

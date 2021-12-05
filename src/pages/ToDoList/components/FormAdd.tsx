@@ -1,15 +1,7 @@
 import moment from "moment";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
-interface RecordType {
-  titleTask: string;
-  desc: string;
-  dueDate: string;
-  piority: string;
-  id: number;
-  isCompleted: boolean;
-}
+import type { ToDoList as IToDoList } from "../typing";
 
 // Form initial state
 const INITIAL_STATE = {
@@ -19,8 +11,12 @@ const INITIAL_STATE = {
   piority: "Normal",
 };
 
-const FormAdd = (props: { record?: RecordType; type?: string }) => {
-  const { record, type } = props;
+const FormAdd = (props: {
+  record?: IToDoList.Record;
+  type?: string;
+  renderIndex?: any;
+}) => {
+  const { record, type, renderIndex } = props;
   const { handleSubmit, register } = useForm();
   const [formData, setFormData] = useState(type ? record : INITIAL_STATE);
 
@@ -29,7 +25,7 @@ const FormAdd = (props: { record?: RecordType; type?: string }) => {
     setFormData((prevState: any) => ({ ...prevState, [name]: value }));
   };
 
-  const onSubmit = async (value: RecordType) => {
+  const onSubmit = async (value: IToDoList.Record) => {
     const getDataLocal = localStorage.getItem("dataTask");
     const getDataTask = getDataLocal !== null ? JSON.parse(getDataLocal) : [];
 
@@ -41,22 +37,21 @@ const FormAdd = (props: { record?: RecordType; type?: string }) => {
           item?.id === newValEdit?.id &&
           getDataTask.splice(index, 1, newValEdit)
       );
+      renderIndex();
       localStorage.setItem("dataTask", JSON.stringify(getDataTask));
-      alert("Successfully updated");
       return;
     }
 
     // add
     const newVal = value;
-    newVal.isCompleted = false;
     newVal.id = new Date().valueOf();
     setFormData(INITIAL_STATE);
+    renderIndex();
 
     let arrData = [];
     arrData.push(...getDataTask);
     arrData.push(newVal);
     localStorage.setItem("dataTask", JSON.stringify(arrData));
-    alert("Successfully added");
   };
 
   return (
@@ -94,16 +89,17 @@ const FormAdd = (props: { record?: RecordType; type?: string }) => {
             <label>Due Date</label>
             <input
               type="date"
-              className="form-control"
+              className="form-control due-date"
               {...register("dueDate")}
               value={formData?.dueDate}
               onChange={handleChange}
+              min={moment().format("YYYY-MM-DD")}
             />
           </div>
           <div className="form-group">
             <label>Piority</label>
             <select
-              className="form-control"
+              className="form-control piority"
               {...register("piority")}
               value={formData?.piority}
               onChange={handleChange}
